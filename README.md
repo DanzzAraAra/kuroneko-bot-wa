@@ -16,7 +16,7 @@ All core features and plugins are fully powered by the highly reliable **[sylvat
 - **Auto Load Plugins:** Simply drop your `.js` files into the `plugins/` directory, and the bot will load them dynamically without needing a restart!
 - **MongoDB Integration:** Fast, reliable, and scalable database for saving user data, limits, premium statuses, and group configurations.
 - **API Sylvatica Powered:** All commands (AI, Downloaders, Search, etc.) are integrated with the Sylvatica API for maximum efficiency.
-- **Group Protection:** Advanced group management including Anti-Link, AntiBot, Antitagsw AntiToxic, and AntiNSFW.
+- **Group Protection:** Advanced group management including AntiLink, AntiBot, Antitagsw AntiToxic, and AntiNSFW.
 
 ---
 
@@ -89,7 +89,7 @@ module.exports = {
 # Start the bot
 node index.js
 ```
-*When prompted in the terminal, enter the phone number you want to use as the bot to receive the 8-digit **Pairing Code** via WhatsApp.*
+*When prompted in the terminal, enter the phone number you want to use as the bot to receive the 8 digit **Pairing Code** via WhatsApp.*
 
 ---
 
