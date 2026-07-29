@@ -1,8 +1,3 @@
-/*
-   * Dandy
-   * DO NOT FOR SALE!
-   * Github: github.com/DanzzAraAra
-*/
 const settings = {
     botName: 'KuroNeko',
     ownerName: 'DanzzAraAra',
