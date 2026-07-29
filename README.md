@@ -6,7 +6,7 @@
 
 A powerful, modular, and feature-rich WhatsApp bot built with **JavaScript (CommonJS)**. This bot uses **MongoDB** as its database, features **Pairing Code** authentication for easy login, and supports **Auto-Loading Plugins** for seamless development. 
 
-All core features and plugins are fully powered by the highly reliable **[api.sylvatica.my.id](https://api.sylvatica.my.id)**.
+All core features and plugins are fully powered by the highly reliable **[sylvatica.my.id](https://sylvatica.my.id)**.
 
 ---
 
