@@ -25,29 +25,46 @@ module.exports = {
       }
 
       const res = data.data;
-      const mediaList = res.mediaUrls && res.mediaUrls.length > 0 
-        ? res.mediaUrls 
-        : (res.downloadUrl ? [{ url: res.downloadUrl, type: res.type === 'reel' || res.type === 'video' ? 'video' : 'image' }] : []);
+      let mediaList = [];
+
+      if (res.media?.slides && res.media.slides.length > 0) {
+        res.media.slides.forEach(slide => {
+          if (slide.videos && slide.videos.length > 0) {
+            mediaList.push({ url: slide.videos[0].url, type: 'video' });
+          } else if (slide.images && slide.images.length > 0) {
+            mediaList.push({ url: slide.images[0].url, type: 'image' });
+          }
+        });
+      } else if (res.media?.videos && res.media.videos.length > 0) {
+        mediaList.push({ url: res.media.videos[0].url, type: 'video' });
+      } else if (res.media?.thumbnail && !res.metadata?.isVideo) {
+        mediaList.push({ url: res.media.thumbnail, type: 'image' });
+      } else if (res.media?.thumbnail && res.metadata?.isVideo && res.media.videos) {
+         mediaList.push({ url: res.media.videos[0].url, type: 'video' });
+      }
 
       if (!mediaList.length) {
         await m.reply('Failed to get media link.');
         return false;
       }
 
-      // Menyusun caption
+      const authorName = res.author?.username || '-';
+      const likesCount = res.metadata?.likeCount ?? '0';
+      const commentsCount = res.metadata?.commentCount ?? '0';
+      const postCaption = res.metadata?.caption || '';
+
       let caption = `*✨ ɪɴꜱᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n`;
-      caption += `*• ᴀᴜᴛʜᴏʀ:* ${res.author || '-'}\n`;
-      caption += `*• ᴛɪᴛʟᴇ:* ${res.title || '-'}\n`;
-      caption += `*• ʟɪᴋᴇꜱ:* ${res.likes ?? '0'}\n`;
-      caption += `*• ᴄᴏᴍᴍᴇɴᴛꜱ:* ${res.comments ?? '0'}`;
+      caption += `*• ᴀᴜᴛʜᴏʀ:* @${authorName}\n`;
+      caption += `*• ʟɪᴋᴇꜱ:* ${likesCount}\n`;
+      caption += `*• ᴄᴏᴍᴍᴇɴᴛꜱ:* ${commentsCount}`;
       
-      if (res.caption_full) {
-        caption += `\n\n*• ᴄᴀᴘᴛɪᴏɴ:* ${res.caption_full}`;
+      if (postCaption) {
+        caption += `\n\n*• ᴄᴀᴘᴛɪᴏɴ:*\n${postCaption}`;
       }
 
       if (mediaList.length === 1) {
         const item = mediaList[0];
-        const isVideo = item.type === 'video' || item.url.includes('.mp4') || res.type === 'reel';
+        const isVideo = item.type === 'video' || item.url.includes('.mp4') || res.metadata?.isVideo;
 
         if (isVideo) {
           await sock.sendMessage(m.chat || m.from, {
