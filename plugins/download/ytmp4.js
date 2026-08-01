@@ -28,8 +28,13 @@ module.exports = {
       let caption = `*✨ ʏᴏᴜᴛᴜʙᴇ ᴍᴘ4 ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n`;
       caption += `*• ᴛɪᴛʟᴇ:* ${ytData.title || '-'}`;
 
+      const getMedia = await axios.get(ytData.download_url, { 
+          responseType: 'arraybuffer' 
+      });
+      const videoBuffer = Buffer.from(getMedia.data, 'binary');
+
       await sock.sendMessage(m.chat || m.from, {
-        video: { url: ytData.download_url },
+        video: videoBuffer,
         caption: caption,
         mimetype: 'video/mp4'
       }, { quoted: m });
