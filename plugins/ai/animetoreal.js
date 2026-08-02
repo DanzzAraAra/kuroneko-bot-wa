@@ -1,19 +1,26 @@
 const axios = require('axios');
+const { uploader } = require('../../src/uploader.js');
 
 module.exports = {
   name: ['animetoreal', 'toreal'],
   limit: 3,
   premium: false,
   execute: async (sock, m, args, settings, commandName, usedPrefix) => {
-    const url = args[0];
-
-    if (!url || !url.startsWith('http')) {
-      await m.reply(`*Ex:* ${usedPrefix}${commandName} <url gambar anime>`);
-      return false;
-    }
-
     try {
-      if (settings?.mess?.wait) await m.reply(settings.mess.wait);
+      let url = args[0];
+      let q = m.quoted ? m.quoted : m;
+      let mime = (q.msg || q).mimetype || '';
+
+      if (mime.includes('image')) {
+        if (settings?.mess?.wait) await m.reply(settings.mess.wait);
+        let media = await q.download();
+        url = await uploader(media);
+      } else if (!url || !url.startsWith('http')) {
+        await m.reply(`*Ex:* ${usedPrefix}${commandName} <url gambar anime>\nAtau balas/kirim gambar dengan caption ${usedPrefix}${commandName}`);
+        return false;
+      } else {
+        if (settings?.mess?.wait) await m.reply(settings.mess.wait);
+      }
 
       const apiUrl = `${settings.api}/api/ai/animetoreal?url=${encodeURIComponent(url)}&apikey=${settings.key}`;
       const { data } = await axios.get(apiUrl);
