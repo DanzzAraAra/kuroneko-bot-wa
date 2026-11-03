@@ -182,7 +182,7 @@ Saat pertama kali dijalankan, pilih metode login di terminal:
    - Setiap command memiliki biaya limit (`limit: n`). Pengguna biasa memiliki kuota limit, sedangkan user premium dan owner dibebaskan dari pemotongan limit.
    - Perintah `.daily`, `.weekly`, `.claim`, dan `.buy` tersedia untuk menambah limit atau saldo uang.
 4. **Proteksi & Fitur Grup:**
-   - Dilengkapi saklar proteksi aktif seperti `antilink`, `antilinkch`, `antitagsw`, `antitoxic`, `antinsfw`, `antidelete`, serta sistem warning (`.warn` & `.cekwarn`) dan penjadwalan buka/tutup grup otomatis (`.schedule`).
+   - Dilengkapi proteksi aktif seperti `antilink`, `antilinkch`, `antitagsw`, `antitoxic`, `antinsfw`, `antidelete`, serta sistem warning (`.warn` & `.cekwarn`) dan penjadwalan buka/tutup grup otomatis (`.schedule`).
 
 ---
 
@@ -212,7 +212,7 @@ Berikut adalah ringkasan kategori command yang tersedia berdasarkan folder di da
 
 ## API Credit
 
-Semua fitur pendukung utama pada bot ini didukung penuh oleh:
+Semua fitur utama pada bot ini didukung penuh oleh:
 - **Provider:** [Sylvatica API](https://sylvatica.my.id)
 
 ---
