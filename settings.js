@@ -17,9 +17,9 @@ const settings = {
     anticall: false,
 
 /*
-untuk mendapatkan apikey, buka https://sylvatica.my.id lalu daftar atau login ke akun kalian. setelah itu buka profile, salin apikey kamu, lalu tempel di bagian key pada config ini
+untuk mendapatkan apikey, buka https://sylvatica.cloud lalu daftar atau login ke akun kalian. setelah itu buka profile, salin apikey kamu, lalu tempel di bagian key pada config ini
 */
-    api: 'https://sylvatica.my.id',
+    api: 'https://sylvatica.cloud',
     key: "", // ISI
     
 database: {
